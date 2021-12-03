@@ -37,4 +37,11 @@ confirmDelete(){
   })
 }
 
+setFactureInactive(etat:number){
+  this.idFacture=etat;
+  this.serviceFacture.setFacInactive(etat).subscribe((res) => {
+    this.getAllFacture()
+  })
+}
+
 }

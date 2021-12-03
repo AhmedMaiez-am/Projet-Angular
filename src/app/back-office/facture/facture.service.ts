@@ -26,4 +26,8 @@ export class FactureService {
     return this.httpC.delete<Facture>(url);
   }
 
+  setFacInactive(etat:number): Observable<Facture[]>{
+    return this.httpC.get<Facture[]>(this.url+'set-inactive/'+etat, this.httpOptions);
+  }
+
 }
