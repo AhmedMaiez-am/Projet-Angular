@@ -28,8 +28,8 @@ export class ClientService {
     );
   }
 
-  deleteClient(client: Client): Observable<Client> {
-    const url = this.url + 'remove-client/' + client.idClient;
+  deleteClient(id: number): Observable<Client> {
+    const url = this.url + 'remove-client/' + id;
     return this.httpC.delete<Client>(url);
   }
 

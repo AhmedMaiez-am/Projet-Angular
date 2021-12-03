@@ -66,13 +66,6 @@ export class ClientComponent implements OnInit {
     })
   }
 
-  deleteClient(client:Client){
-    this.serviceClient.deleteClient(client).subscribe((res) => {
-      this.getAllClient()
-    })
-
-  }
-
   updateClient(client:Client){
     this.formUpdate.setValue({nom: client.nom,
       prenom: client.prenom,
@@ -102,4 +95,18 @@ export class ClientComponent implements OnInit {
       });
     }
   }
+
+  idClient: number;
+  deleteClient(id:number){
+    this.idClient=id;
+  }
+
+
+  confirmDelete(){
+    this.serviceClient.deleteClient(this.idClient).subscribe((res) => {
+      this.getAllClient()
+    })
+
+  }
+
 }
