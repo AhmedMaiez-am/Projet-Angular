@@ -42,4 +42,9 @@ export class ClientService {
     );
   }
 
+  search(s:string):Observable<Client[]> {
+    return this.httpC.get<Client[]>(this.url+'recherche/'+s, this.httpOptions);
+
+  }
+
 }

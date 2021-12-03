@@ -1,3 +1,13 @@
+<style>
+  .card:hover {
+    transform: scale(1.15);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+  }
+  .card {
+    transition: 0.5s ease;
+    margin:30px;
+  }
+  </style>
 <div class="container">
 
 
@@ -5,9 +15,10 @@
   <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> </div>
   <div class="text-center "> <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i>Ajouter un nouveau client</button>
   </div>
- <!--  <div  class="col-3 mb-3">
-    <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Rayon..." aria-label="Search"></div>
-   </div> -->
+
+  <div  class="col-3 mb-3">
+    <div > <input style="text-align: center; width: 1150px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher un client..." aria-label="Search"></div>
+   </div>
   <div class="row">
   <div class="col-4 " *ngFor="let item of listClient; let i = index">
       <div class="card border-info mb-3"  >

@@ -16,7 +16,7 @@ export class ClientComponent implements OnInit {
   formClient:FormGroup;
   formUpdate:FormGroup;
   newClient:Client;
-  updatedClient:Client;
+  searchVal:string;
 
 
   ngOnInit() {
@@ -84,16 +84,6 @@ export class ClientComponent implements OnInit {
       idClient: client.idClient
     })
 
-  /* this.formUpdate = new FormGroup({
-  nom:new FormControl(client.nom),
-  prenom:new FormControl(client.prenom),
-  dateNaissance:new FormControl(client.dateNaissance),
-  email:new FormControl(client.email),
-  password:new FormControl(client.password),
-  categorieClient:new FormControl(client.categorieClient),
-  profession:new FormControl(client.profession),
-  idClient:new FormControl(client.idClient)
-})*/
   }
 
   confirmUpdate(){
@@ -101,5 +91,15 @@ export class ClientComponent implements OnInit {
       this.getAllClient()
       console.log(res)
     })
+  }
+
+  search(){
+    if (this.searchVal == '') {
+      this.getAllClient();
+    } else {
+      this.serviceClient.search(this.searchVal).subscribe((res) => {
+        this.listClient = res;
+      });
+    }
   }
 }
