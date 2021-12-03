@@ -15,6 +15,7 @@ export class RayonComponent implements OnInit {
   rayon:FormGroup;
   MyRayon:Rayon;
   searchVal:string  
+  formUpdate:FormGroup;
 
   ngOnInit() {
    this.getAllRayon()
@@ -24,6 +25,12 @@ export class RayonComponent implements OnInit {
     libelle:new FormControl('',Validators.compose([
       Validators.required]))
 
+  })
+  this.formUpdate = new FormGroup({
+    idRayon:new FormControl(),
+    libelle:new FormControl('',[Validators.required]),
+    code:new FormControl('',[Validators.required])
+   
   })
   }
 
@@ -35,8 +42,13 @@ export class RayonComponent implements OnInit {
     });
   }
 
-  deleteRayon(rayon:Rayon){
-    this.serviceRayon.deleteStock(rayon).subscribe((res) => {
+  idRayon : number;
+  getId(id: number){
+    this.idRayon=id;
+  }
+
+  deleteRayon(){
+    this.serviceRayon.deleteRayon(this.idRayon).subscribe((res) => {
       this.getAllRayon()
     })
 
@@ -59,5 +71,22 @@ export class RayonComponent implements OnInit {
       });
     }
   }
+
+  updateRayon(rayon:Rayon){
+    this.formUpdate.setValue({
+      idRayon:rayon.idRayon,
+      libelle: rayon.libelle,
+      code: rayon.code
+      
+    })
+  }
+
+  confirmUpdate(){
+    this.serviceRayon.updateRayon(this.formUpdate.getRawValue()).subscribe((res) => {
+      this.getAllRayon()
+      console.log(res)
+    })
+  }
+
 
 }

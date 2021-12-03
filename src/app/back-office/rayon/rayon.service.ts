@@ -20,8 +20,9 @@ export class RayonService {
     return this.httpC.get<Rayon[]>(this.url + 'retrieve-all-rayons');
   }
 
-  deleteStock(rayon: Rayon): Observable<Rayon> {
-    const url = this.url + 'remove-rayon/' + rayon.idRayon;
+  
+  deleteRayon(id: number): Observable<Rayon> {
+    const url = this.url + 'remove-rayon/' + id;
     return this.httpC.delete<Rayon>(url);
   }
 
@@ -36,6 +37,13 @@ export class RayonService {
   search(s:string):Observable<Rayon[]> {
     return this.httpC.get<Rayon[]>(this.url+'recherche/'+s, this.httpOptions);
   
+  }
+
+  updateRayon(rayon:Rayon): Observable<Rayon>{
+    return this.httpC.put<Rayon>(
+      this.url+'modify-rayon',rayon,
+      this.httpOptions
+    );
   }
 
   

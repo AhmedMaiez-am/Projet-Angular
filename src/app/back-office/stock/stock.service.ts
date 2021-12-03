@@ -41,8 +41,7 @@ export class StockService {
 
   updateStock(stock:Stock): Observable<Stock>{
     return this.httpC.put<Stock>(
-      this.url+'modify-stock',
-      stock,
+      this.url+'modify-stock', stock,
       this.httpOptions
     );
   }
