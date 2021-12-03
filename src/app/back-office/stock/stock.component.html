@@ -1,0 +1,157 @@
+<div class="container">
+    
+  <style>
+
+
+    .card:hover {
+      transform: scale(1.15);
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+    }
+    .card {
+      transition: 0.5s ease;
+      cursor: pointer;
+      margin:30px;
+    }
+    </style>
+
+<div class="text-center " style="color:#4B4645;">   <h1>LISTE DES STOCKS</h1> </div>
+
+<div class="text-center "> <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i></button> 
+</div>
+<div  class="col-3 mb-3">
+ <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Stock..." aria-label="Search"></div>
+</div>
+<div class="row">    
+<div class="col-4" *ngFor="let item of ListeStocks; let i = index">
+    <div class="card" >
+      <div class="card-header" style="background-color: #2E4053; font-weight: bold; color: white">
+        {{item.libelleStock}} 
+      </div>
+      <div>        <button class=" btn btn-light w-100" style="color: steelblue; font-weight: bold;" type="button">Afficher les produits</button>      </div>
+      <div class="card-body" style="background-color: powderblue;">
+        <h5 class="card-title">La quntitée disponibles: <span style="font-weight: bold; color: green;"> {{item.qte}}</span></h5>
+        <p class="card-text">La quantitée minimale de ce stock est : <span style="color: red;font-weight: bold; " > {{item.qteMin}}</span></p>
+        <button (click)="getId(item.idStock)" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-danger "><i class="fas fa-trash-alt"></i></button>
+        <button type="button" (click)="updateStock(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
+      </div>
+    </div>
+</div>
+</div>
+  </div>
+
+<!-- Add -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black; color: blanchedalmond;">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">AJOUTER STOCKS</h5>
+        <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="stock">
+          <div class="mb-3">
+            <label for="libelleStock" class="col-form-label">Libelle Stock:</label>
+            <input formControlName="libelleStock" type="text" class="form-control" id="libelleStock"
+            name="libelleStock" placeholder="Ajouter votre Libelle ..." 
+              [ngClass]="{ 'is-invalid':stock.get('libelleStock').touched && stock.get('libelleStock').invalid }" 
+             
+              />
+              <div class="invalid-feedback" *ngIf="stock.get('libelleStock').touched && stock.get('libelleStock').invalid">
+                <p *ngIf="stock.get('libelleStock').errors.required">Ajouté votre Libelle SVP</p>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="qteMin" class="col-form-label">Quntitée Minimale:</label>
+            <input  formControlName="qteMin" type="number" class="form-control" id="qteMin"
+            name="qteMin" placeholder="Ajouter votre Quantitée Minimale ..." 
+              [ngClass]="{ 'is-invalid':stock.get('qteMin').touched && stock.get('qteMin').invalid }" 
+             
+              />
+              <div class="invalid-feedback" *ngIf="stock.get('qteMin').touched && stock.get('qteMin').invalid">
+                <p *ngIf="stock.get('qteMin').errors.required">Ajouté votre Quantitée Minimale SVP!</p>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+        <button [disabled]= "stock.invalid" (click)="addStock()"  class="btn btn-warning" data-bs-dismiss="modal">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modifier -->
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black; color: blanchedalmond;">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">MODIFIER STOCKS</h5>
+      <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
+    </div>
+      <div class="modal-body">
+        <form [formGroup]="formUpdate" >
+
+
+          <div class="mb-3">
+            <label for="libelleStock" class="col-form-label">Libelle Stock:</label>
+            <input formControlName="libelleStock" type="text" class="form-control" id="libelleStock"
+            name="libelleStock" placeholder="Insérer le nom du client ..."
+            [ngClass]="{ 'is-invalid':formUpdate.get('libelleStock').touched && formUpdate.get('libelleStock').invalid }"
+
+            />
+            <div class="invalid-feedback" *ngIf="formUpdate.get('libelleStock').touched && formUpdate.get('libelleStock').invalid">
+              <p *ngIf="formUpdate.get('libelleStock').errors.required">Ajouté votre Libelle SVP!</p>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="qteMin" class="col-form-label">Quntitée Minimale:</label>
+            <input  formControlName="qteMin" type="text" class="form-control" id="qteMin"
+            name="qteMin" placeholder="Insérer le prenom du client ..."
+            [ngClass]="{ 'is-invalid':formUpdate.get('qteMin').touched && formUpdate.get('qteMin').invalid }"
+
+            />
+            <div class="invalid-feedback" *ngIf="formUpdate.get('qteMin').touched && formUpdate.get('qteMin').invalid">
+              <p *ngIf="formUpdate.get('qteMin').errors.required">Ajouté votre Quantitée Minimale SVP!</p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer" >
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+        <button  [disabled]= "formUpdate.invalid" (click)="confirmUpdate()"  class="btn btn-success" data-bs-dismiss="modal">Mettre à jour</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal supp -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: darkred;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Suppression de Stock!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        "Etes-vous sur de supprimer ce stock!"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+        <button (click)="deleteStocks()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oui <i class="fas fa-trash-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
