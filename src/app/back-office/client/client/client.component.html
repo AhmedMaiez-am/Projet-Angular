@@ -1,0 +1,270 @@
+<div class="container">
+
+
+
+  <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> </div>
+  <div class="text-center "> <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i>Ajouter un nouveau client</button>
+  </div>
+ <!--  <div  class="col-3 mb-3">
+    <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Rayon..." aria-label="Search"></div>
+   </div> -->
+  <div class="row">
+  <div class="col-4 " *ngFor="let item of listClient; let i = index">
+      <div class="card border-info mb-3"  >
+        <div class="card-header text-dark bg-info mb-3">
+         <p><strong>Nom et prénom : </strong></p> {{item.nom + ' ' + item.prenom }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><strong>Email : </strong> {{item.email}}</h5>
+            <p class="card-text"><strong> Catégorie : </strong>{{item.categorieClient}}</p>
+            <p class="card-text"><strong> Profession: </strong>{{item.profession}}</p>
+         <div class="mt-5">
+           <button (click)="deleteClient(item)" class="btn btn-danger" > <i class="fas fa-trash-alt"></i> Supprimer</button>
+          <button type="button" (click)="updateClient(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: black; color: blanchedalmond;">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">AJOUTER CLIENTS</h5>
+          <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+          <div class="modal-body">
+            <form [formGroup]="formClient" >
+
+
+              <div class="mb-3">
+                <label for="nom" class="col-form-label">Nom Client:</label>
+                <input formControlName="nom" type="text" class="form-control" id="nom"
+                name="nom" placeholder="Insérer le nom du client ..."
+                [ngClass]="{ 'is-invalid':formClient.get('nom').touched && formClient.get('nom').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formClient.get('nom').touched && formClient.get('nom').invalid">
+                  <p *ngIf="formClient.get('nom').errors.required">Veuillez ajouter un nom !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="prenom" class="col-form-label">Prenom du client :</label>
+                <input  formControlName="prenom" type="text" class="form-control" id="prenom"
+                name="prenom" placeholder="Insérer le prenom du client ..."
+                [ngClass]="{ 'is-invalid':formClient.get('prenom').touched && formClient.get('prenom').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formClient.get('prenom').touched && formClient.get('prenom').invalid">
+                  <p *ngIf="formClient.get('prenom').errors.required">Veuillez ajouter un prenom !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="dateNaissance" class="col-form-label">Date naissance du client :</label>
+                <input  formControlName="dateNaissance" type="date" class="form-control" id="dateNaissance"
+                name="dateNaissance" placeholder="Choisir la date de naissance du client ..."
+                [ngClass]="{ 'is-invalid':formClient.get('dateNaissance').touched && formClient.get('dateNaissance').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formClient.get('dateNaissance').touched && formClient.get('dateNaissance').invalid">
+                  <p *ngIf="formClient.get('dateNaissance').errors.required">Veuillez choisir une date valide !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="email" class="col-form-label">Addresse Email :</label>
+                <input  formControlName="email" type="text" class="form-control" id="email"
+                name="email" placeholder="Insérer l'addresse mail du client  ..."
+                [ngClass]="{ 'is-invalid':formClient.get('email').touched && formClient.get('email').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formClient.get('email').touched && formClient.get('email').invalid">
+                  <p *ngIf="formClient.get('email').errors.required">Veuillez ajouter une addresse mail valide !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="password" class="col-form-label">Mot de passe :</label>
+                <input  formControlName="password" type="password" class="form-control" id="password"
+                name="password" placeholder="Choisir une mot de passe  ..."
+                [ngClass]="{ 'is-invalid':formClient.get('password').touched && formClient.get('password').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formClient.get('password').touched && formClient.get('password').invalid">
+                  <p *ngIf="formClient.get('password').errors.required">Veuillez ajouter une mot de passe !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="categorieClient" class="col-form-label">Catégorie du client :</label>
+                <select  formControlName="categorieClient" type="categorieClient" class="form-select"  id="categorieClient"
+                name="categorieClient" placeholder="Choisir une catégorie  ..."
+                [ngClass]="{ 'is-invalid':formClient.get('categorieClient').touched && formClient.get('categorieClient').invalid }">
+                <option selected>Fidele</option>
+                <option value="1">Ordinaire</option>
+                <option value="2">Premium</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="formClient.get('categorieClient').touched && formClient.get('categorieClient').invalid">
+                  <p *ngIf="formClient.get('categorieClient').errors.required">Veuillez choisir une catégorie !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="profession" class="col-form-label">Profession du client :</label>
+                <select  formControlName="profession" type="profession" class="form-select"  id="profession"
+                name="profession" placeholder="Choisir une profession  ..."
+                [ngClass]="{ 'is-invalid':formClient.get('profession').touched && formClient.get('profession').invalid }">
+                <option selected>Docteur</option>
+                <option value="1">Ingénieur</option>
+                <option value="2">Etudiant</option>
+                <option value="3">Commercial</option>
+                <option value="4">Cadre</option>
+                <option value="5">Autre..</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="formClient.get('profession').touched && formClient.get('profession').invalid">
+                  <p *ngIf="formClient.get('profession').errors.required">Veuillez choisir une profession !</p>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+            <button  [disabled]= "formClient.invalid" (click)="addAllClient()"  class="btn btn-success" data-bs-dismiss="modal">Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: black; color: blanchedalmond;">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">MODIFIER CLIENTS</h5>
+          <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+          <div class="modal-body">
+            <form [formGroup]="formUpdate" >
+
+
+              <div class="mb-3">
+                <label for="nom" class="col-form-label">Nom Client:</label>
+                <input formControlName="nom" type="text" class="form-control" id="nom"
+                name="nom" placeholder="Insérer le nom du client ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('nom').touched && formUpdate.get('nom').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formUpdate.get('nom').touched && formUpdate.get('nom').invalid">
+                  <p *ngIf="formUpdate.get('nom').errors.required">Veuillez ajouter un nom !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="prenom" class="col-form-label">Prenom du client :</label>
+                <input  formControlName="prenom" type="text" class="form-control" id="prenom"
+                name="prenom" placeholder="Insérer le prenom du client ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('prenom').touched && formUpdate.get('prenom').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formUpdate.get('prenom').touched && formUpdate.get('prenom').invalid">
+                  <p *ngIf="formUpdate.get('prenom').errors.required">Veuillez ajouter un prenom !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="dateNaissance" class="col-form-label">Date naissance du client :</label>
+                <input  formControlName="dateNaissance" type="date" class="form-control" id="dateNaissance"
+                name="dateNaissance" placeholder="Choisir la date de naissance du client ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('dateNaissance').touched && formUpdate.get('dateNaissance').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formUpdate.get('dateNaissance').touched && formUpdate.get('dateNaissance').invalid">
+                  <p *ngIf="formUpdate.get('dateNaissance').errors.required">Veuillez choisir une date valide !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="email" class="col-form-label">Addresse Email :</label>
+                <input  formControlName="email" type="text" class="form-control" id="email"
+                name="email" placeholder="Insérer l'addresse mail du client  ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('email').touched && formUpdate.get('email').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formUpdate.get('email').touched && formUpdate.get('email').invalid">
+                  <p *ngIf="formUpdate.get('email').errors.required">Veuillez ajouter une addresse mail valide !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="password" class="col-form-label">Mot de passe :</label>
+                <input  formControlName="password" type="password" class="form-control" id="password"
+                name="password" placeholder="Choisir une mot de passe  ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('password').touched && formUpdate.get('password').invalid }"
+
+                />
+                <div class="invalid-feedback" *ngIf="formUpdate.get('password').touched && formUpdate.get('password').invalid">
+                  <p *ngIf="formUpdate.get('password').errors.required">Veuillez ajouter une mot de passe !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="categorieClient" class="col-form-label">Catégorie du client :</label>
+                <select  formControlName="categorieClient" type="categorieClient" class="form-select"  id="categorieClient"
+                name="categorieClient" placeholder="Choisir une catégorie  ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('categorieClient').touched && formUpdate.get('categorieClient').invalid }">
+                <option selected>Fidele</option>
+                <option value="1">Ordinaire</option>
+                <option value="2">Premium</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="formUpdate.get('categorieClient').touched && formUpdate.get('categorieClient').invalid">
+                  <p *ngIf="formUpdate.get('categorieClient').errors.required">Veuillez choisir une catégorie !</p>
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="profession" class="col-form-label">Profession du client :</label>
+                <select  formControlName="profession" type="profession" class="form-select"  id="profession"
+                name="profession" placeholder="Choisir une profession  ..."
+                [ngClass]="{ 'is-invalid':formUpdate.get('profession').touched && formUpdate.get('profession').invalid }">
+                <option selected>Docteur</option>
+                <option value="1">Ingénieur</option>
+                <option value="2">Etudiant</option>
+                <option value="3">Commercial</option>
+                <option value="4">Cadre</option>
+                <option value="5">Autre..</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="formUpdate.get('profession').touched && formUpdate.get('profession').invalid">
+                  <p *ngIf="formUpdate.get('profession').errors.required">Veuillez choisir une profession !</p>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+            <button  [disabled]= "formUpdate.invalid" (click)="confirmUpdate()"  class="btn btn-success" data-bs-dismiss="modal">Mettre à jour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+

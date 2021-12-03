@@ -1,0 +1,72 @@
+<div class="container">
+    
+
+
+  <div class="text-center " style="color:#4B4645;">   <h1>LISTE DES RAYONS</h1> </div>
+  <div class="text-center "> <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i></button>
+  </div>
+  <div  class="col-3 mb-3">
+    <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Rayon..." aria-label="Search"></div>
+   </div>
+  <div class="row">    
+  <div class="col-4 " *ngFor="let item of ListeRayons; let i = index">
+      <div class="card" >
+        <div class="card-header" style="background-color: #2E4053; font-weight: bold; color: white">
+          {{item.libelle}}
+        </div>
+        <div class="card-body" style="background-color: powderblue;">
+          <h5 class="card-title">Le Code: {{item.code}}</h5>
+         <div class="mt-5"> <button (click)="deleteRayon(item)" class="btn btn-danger "><i class="fas fa-trash-alt"></i></button>
+         
+           <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalLabel" data-bs-whatever="@fat"><i class="fas fa-pen-alt"></i></button>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+    </div>
+  
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: black; color: blanchedalmond;">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">AJOUTER RAYONS</h5>
+        <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+        <div class="modal-body">
+          <form [formGroup]="rayon" >
+            <div class="mb-3">
+              <label for="libelle" class="col-form-label">Libelle Rayon:</label>
+              <input formControlName="libelle" type="text" class="form-control" id="libelle" 
+              name="libelle" placeholder="Ajouter votre Libelle ..."
+              [ngClass]="{ 'is-invalid':rayon.get('libelle').touched && rayon.get('libelle').invalid }"
+             
+              />
+              <div class="invalid-feedback" *ngIf="rayon.get('libelle').touched && rayon.get('libelle').invalid">
+                <p *ngIf="rayon.get('libelle').errors.required">Ajouter votre libelle SVP</p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="code" class="col-form-label">Code:</label>
+              <input  formControlName="code" type="number" class="form-control" id="code"
+              name="code" placeholder="Ajouter votre Code ..." 
+              [ngClass]="{ 'is-invalid':rayon.get('code').touched && rayon.get('code').invalid }" 
+             
+              />
+              <div class="invalid-feedback" *ngIf="rayon.get('code').touched && rayon.get('code').invalid">
+                <p *ngIf="rayon.get('code').errors.required">Ajouté votre code SVP</p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+          <button  [disabled]= "rayon.invalid" (click)="addRayon()"  class="btn btn-warning" data-bs-dismiss="modal">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
