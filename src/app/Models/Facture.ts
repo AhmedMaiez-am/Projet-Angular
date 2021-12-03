@@ -1,10 +1,10 @@
 import { detailFacture } from "./detailFacture";
 
 export class Facture {
-  idFacture:number;
+  idFacture?:number;
   montantFacture:number;
     montantRemise:number;
-   dateFacture:Date;
+   dateFacture:string;
    active:boolean;
    detailFacture:detailFacture;
 }

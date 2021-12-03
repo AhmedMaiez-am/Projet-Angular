@@ -25,6 +25,13 @@ const routes: Routes = [
     import('./client/client.module').then(
       (m) => m.ClientModule
     )
+  },
+  {
+    path: 'facture',
+    loadChildren: () =>
+    import('./facture/facture.module').then(
+      (m) => m.FactureModule
+    )
   }
 ]}]
 
