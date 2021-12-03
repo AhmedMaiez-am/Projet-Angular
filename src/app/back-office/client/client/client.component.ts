@@ -10,15 +10,17 @@ import { ClientService } from '../client.service';
 })
 export class ClientComponent implements OnInit {
 
-  listClient : Client[];
+
   constructor(private serviceClient:ClientService) { }
 
   formClient:FormGroup;
   formUpdate:FormGroup;
   newClient:Client;
   updatedClient:Client;
+
+
   ngOnInit() {
-    this.getAllClient();
+    this.getAllClient()
     this.formClient=new FormGroup({
       nom:new FormControl('',[Validators.required]),
       prenom:new FormControl('',[Validators.required]),
@@ -28,8 +30,19 @@ export class ClientComponent implements OnInit {
       categorieClient:new FormControl('',[Validators.required]),
       profession:new FormControl('',[Validators.required])
     })
+    this.formUpdate = new FormGroup({
+      nom:new FormControl('',[Validators.required]),
+      prenom:new FormControl('',[Validators.required]),
+      dateNaissance:new FormControl('',[Validators.required]),
+      email:new FormControl('',[Validators.required]),
+      password:new FormControl('',[Validators.required]),
+      categorieClient:new FormControl('',[Validators.required]),
+      profession:new FormControl('',[Validators.required]),
+      idClient:new FormControl()
+    })
   }
 
+  listClient : Client[];
   getAllClient(){
     this.serviceClient.getAllClient().subscribe((res)=>{
       this.listClient=res;
@@ -61,7 +74,17 @@ export class ClientComponent implements OnInit {
   }
 
   updateClient(client:Client){
-  this.formUpdate = new FormGroup({
+    this.formUpdate.setValue({nom: client.nom,
+      prenom: client.prenom,
+      dateNaissance: client.dateNaissance,
+      email: client.email,
+      password: client.password,
+      categorieClient: client.categorieClient,
+      profession: client.profession,
+      idClient: client.idClient
+    })
+
+  /* this.formUpdate = new FormGroup({
   nom:new FormControl(client.nom),
   prenom:new FormControl(client.prenom),
   dateNaissance:new FormControl(client.dateNaissance),
@@ -70,26 +93,13 @@ export class ClientComponent implements OnInit {
   categorieClient:new FormControl(client.categorieClient),
   profession:new FormControl(client.profession),
   idClient:new FormControl(client.idClient)
-})
+})*/
   }
 
   confirmUpdate(){
-    this.updatedClient=new Client(
-      this.formUpdate.get('nom').value,
-      this.formUpdate.get('prenom').value,
-      this.formUpdate.get('dateNaissance').value,
-      this.formUpdate.get('email').value,
-      this.formUpdate.get('password').value,
-      this.formUpdate.get('categorieClient').value,
-      this.formUpdate.get('profession').value,
-      this.formUpdate.get('idClient').value
-    )
-    this.serviceClient.updateClient(this.updatedClient).subscribe((res) => {
+    this.serviceClient.updateClient(this.formUpdate.getRawValue()).subscribe((res) => {
       this.getAllClient()
       console.log(res)
     })
   }
-
-
-
 }

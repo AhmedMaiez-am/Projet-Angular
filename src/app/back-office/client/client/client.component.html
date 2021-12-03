@@ -20,13 +20,13 @@
             <p class="card-text"><strong> Profession: </strong>{{item.profession}}</p>
          <div class="mt-5">
            <button (click)="deleteClient(item)" class="btn btn-danger" > <i class="fas fa-trash-alt"></i> Supprimer</button>
-          <button (click)="updateClient(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
+          <button type="button" (click)="updateClient(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
           </div>
         </div>
       </div>
   </div>
   </div>
-    </div>
+</div>
 
 
 
@@ -153,7 +153,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header" style="background-color: black; color: blanchedalmond;">
-            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">MISE A JOUR CLIENTS</h5>
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; margin-left: 150px;">MODIFIER CLIENTS</h5>
           <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
         </div>
           <div class="modal-body">
