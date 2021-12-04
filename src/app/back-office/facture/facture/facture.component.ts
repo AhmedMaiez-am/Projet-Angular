@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { detailFacture } from 'src/app/Models/detailFacture';
 import { Facture } from 'src/app/Models/Facture';
 import { FactureService } from '../facture.service';
@@ -38,14 +39,25 @@ confirmDelete(){
 
 setFactureInactive(etat:number){
   this.idFacture=etat;
-  this.serviceFacture.setFacInactive(etat).subscribe((res) => {
+}
+
+confirmInactive(){
+  this.serviceFacture.setFacInactive(this.idFacture).subscribe((res) => {
     console.log(res);
     this.getAllFacture()
   })
 }
 
-confirmInactive(){
-  
+
+setFactureActive(etat:number){
+  this.idFacture=etat;
+}
+
+confirmActive(){
+  this.serviceFacture.setFacActive(this.idFacture).subscribe((res) => {
+    console.log(res);
+    this.getAllFacture()
+  })
 }
 
 }

@@ -30,6 +30,10 @@ export class FactureService {
     return this.httpC.get<Facture[]>(this.url+'set-inactive/'+etat, this.httpOptions);
   }
 
+  setFacActive(etat:number): Observable<Facture[]>{
+    return this.httpC.get<Facture[]>(this.url+'set-active/'+etat, this.httpOptions);
+  }
+
 
   getFactureById(id:number): Observable<Facture[]>{
     const url = this.url + 'retrive-invoce/'+ id;
