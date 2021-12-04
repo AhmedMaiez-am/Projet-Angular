@@ -23,7 +23,6 @@ export class FactureComponent implements OnInit {
   getAllFacture(){
     this.serviceFacture.getAllFacture().subscribe((res)=>{
       this.listFacture=res;
-      console.log(this.listFacture);
     })
   }
 
@@ -40,8 +39,13 @@ confirmDelete(){
 setFactureInactive(etat:number){
   this.idFacture=etat;
   this.serviceFacture.setFacInactive(etat).subscribe((res) => {
+    console.log(res);
     this.getAllFacture()
   })
+}
+
+confirmInactive(){
+  
 }
 
 }

@@ -8,7 +8,7 @@ import { FactureComponent } from './facture/facture.component';
   declarations: [FactureComponent],
   imports: [
     CommonModule,
-    FactureRoutingModule
+    FactureRoutingModule,
   ]
 })
 export class FactureModule { }

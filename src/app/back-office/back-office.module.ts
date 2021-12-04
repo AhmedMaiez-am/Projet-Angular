@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { ProductComponent } from './product/product.component';
 import { StockComponent } from './stock/stock.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { StockComponent } from './stock/stock.component';
     BackOfficeRoutingModule,
     FormsModule,
      ReactiveFormsModule,
+     NgxQRCodeModule
   ]
 })
 export class BackOfficeModule { }
