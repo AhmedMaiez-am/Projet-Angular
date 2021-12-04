@@ -1,0 +1,160 @@
+<table class="table user-list">
+  <thead>
+    <tr>
+      <th><span>idproduct</span></th>
+      <th><span>code</span></th>
+      <th class="text-center"><span>libelle</span></th>
+      <th><span>prixunitaire</span></th>
+
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let u of my_products; let i = index">
+    <tr>
+      <td>
+        {{ u.idProduit }}
+      </td>
+
+      <td>
+        {{ u.code }}
+      </td>
+      <td class="text-center">
+        <span class="label label-default">{{ u.libelle }}</span>
+      </td>
+      <td>
+        {{ u.prixUnitaire }}
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(u)">Delete</button>
+        <button
+          class="btn btn-secondary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="updateProduct(u)"
+        >
+          Update
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    (click)="showAddModal()"
+  >
+    Add
+  </button>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addProductForm">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Code</label>
+            <input
+              type="text"
+              formControlName="code"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Libelle</label
+            >
+            <input
+              type="text"
+              formControlName="libelle"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Prix Unitaire</label
+            >
+            <input
+              type="text"
+              formControlName="prixUnitaire"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Categorie</label
+            >
+            <select formControlName="CategorieProduit" class="form-control">
+              <option value="Alimentaire">Alimentaire</option>
+              <option value="Electromenager">Electromenager</option>
+              <option value="Quincaillerie">Quincaillerie</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Id Stock</label
+            >
+            <input
+              type="text"
+              formControlName="idstock"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Id Rayon</label
+            >
+            <input
+              type="text"
+              formControlName="idrayon"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <button
+            class="btn btn-secondary"
+            *ngIf="showUpdate"
+            (click)="update()"
+          >
+            update
+          </button>
+
+          <button
+            class="btn btn-primary"
+            *ngIf="showAdd"
+            (click)="addProduct()"
+          >
+            save
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
