@@ -46,4 +46,11 @@ export class StockService {
     );
   }
 
+  sortDESC():Observable<Stock[]> {
+    return this.httpC.get<Stock[]>(this.url + 'stock-sortDESC');
+  }
+  sortASC():Observable<Stock[]> {
+    return this.httpC.get<Stock[]>(this.url + 'stock-sortASC');
+  }
+
 }

@@ -88,5 +88,26 @@ export class RayonComponent implements OnInit {
     })
   }
 
+  SortDesc(){
+  this.serviceRayon.sortDESC().subscribe(
+    (R) => {
+      this.ListeRayons=R;
+   },
+    (error) => {
+      console.log("erreur desc 🙁")
+    }
+  )
+  }
+
+  SortAsc(){
+    this.serviceRayon.sortASC().subscribe(
+      (R) => {
+        this.ListeRayons=R;
+     },
+      (error) => {
+        console.log("erreur desc 🙁")
+      }
+    )
+    }
 
 }

@@ -89,4 +89,28 @@ export class StockComponent implements OnInit {
     })
   }
 
+
+  
+  SortDescStock(){
+    this.serviceStock.sortDESC().subscribe(
+      (S) => {
+        this.ListeStocks=S;
+     },
+      (error) => {
+        console.log("erreur desc 🙁")
+      }
+    )
+    }
+  
+    SortAscStock(){
+      this.serviceStock.sortASC().subscribe(
+        (S) => {
+          this.ListeStocks=S;
+       },
+        (error) => {
+          console.log("erreur desc 🙁")
+        }
+      )
+      }
+
 }

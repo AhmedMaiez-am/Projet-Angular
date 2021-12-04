@@ -46,5 +46,11 @@ export class RayonService {
     );
   }
 
+  sortDESC():Observable<Rayon[]> {
+    return this.httpC.get<Rayon[]>(this.url + 'rayon-sortDESC');
+  }
+  sortASC():Observable<Rayon[]> {
+    return this.httpC.get<Rayon[]>(this.url + 'rayon-sortASC');
+  }
   
 }

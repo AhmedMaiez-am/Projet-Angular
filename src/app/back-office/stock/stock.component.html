@@ -21,6 +21,9 @@
 <div  class="col-3 mb-3">
  <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Stock..." aria-label="Search"></div>
 </div>
+<div class="text-center">
+  <button (click)="SortDescStock()" type="button" class="btn btn-dark mb-3" >Up <i class="fas fa-sort-alpha-up"></i></button>▲▼<button (click)="SortAscStock()" type="button" class="btn btn-success mb-3" >Down <i class="fas fa-sort-alpha-down"></i></button>
+</div>
 <div class="row">    
 <div class="col-4" *ngFor="let item of ListeStocks; let i = index">
     <div class="card" >
