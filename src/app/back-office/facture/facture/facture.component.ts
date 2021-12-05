@@ -69,6 +69,23 @@ triFactures(){
     this.listTrié=res;
     console.log(res)
   })
+}
+
+listActive:Facture[]
+getActiveFac(){
+  this.serviceFacture.getActiveFacture().subscribe((res)=>{
+    this.listActive=res;
+    console.log(res)
+  })
+
+}
+
+listInactive:Facture[]
+getInactiveFac(){
+  this.serviceFacture.getInactiveFacture().subscribe((res)=>{
+    this.listInactive=res;
+    console.log(res)
+  })
 
 }
 

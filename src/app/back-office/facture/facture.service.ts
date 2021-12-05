@@ -43,4 +43,12 @@ export class FactureService {
     return this.httpC.get<Facture[]>(this.url + 'tri-invoices');
   }
 
+  getActiveFacture(): Observable<Facture[]> {
+    return this.httpC.get<Facture[]>(this.url + 'get-active');
+  }
+
+  getInactiveFacture(): Observable<Facture[]> {
+    return this.httpC.get<Facture[]>(this.url + 'get-inactive');
+  }
+
 }
