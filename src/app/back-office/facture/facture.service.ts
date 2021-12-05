@@ -35,9 +35,12 @@ export class FactureService {
   }
 
 
-  getFactureById(id:number): Observable<Facture[]>{
-    const url = this.url + 'retrive-invoce/'+ id;
-    return this.httpC.get<Facture[]>(url);
+  getFactureById(id: number): Observable<Facture> {
+    return this.httpC.get<Facture>(this.url + 'retrive-invoce/' + id);
+  }
+
+  triFacture(): Observable<Facture[]> {
+    return this.httpC.get<Facture[]>(this.url + 'tri-invoices');
   }
 
 }

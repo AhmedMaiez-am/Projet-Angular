@@ -13,7 +13,7 @@
 
 
   <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> </div>
-  <div class="text-center "> <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i>Ajouter un nouveau client</button>
+  <div class="text-center "> <button type="button" class="btn btn-outline-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i>   Ajouter un nouveau client</button>
   </div>
 
   <div  class="col-3 mb-3">
@@ -30,8 +30,8 @@
             <p class="card-text"><strong> Catégorie : </strong>{{item.categorieClient}}</p>
             <p class="card-text"><strong> Profession: </strong>{{item.profession}}</p>
          <div class="mt-5">
-           <button (click)="deleteClient(item.idClient)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger" > <i class="fas fa-trash-alt"></i> Supprimer</button>
-          <button type="button" (click)="updateClient(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
+           <button (click)="deleteClient(item.idClient)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-danger" > <i class="fas fa-trash-alt"></i>  Supprimer</button>
+          <button type="button" (click)="updateClient(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-outline-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>  Modifer</button>
           </div>
         </div>
       </div>
@@ -52,8 +52,8 @@
           </div>
         </div>
         <div class="modal-footer" >
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button (click)="confirmDelete()"  class="btn btn-success" data-bs-dismiss="modal">Supprimer</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+          <button (click)="confirmDelete()"  class="btn btn-outline-success" data-bs-dismiss="modal">Supprimer</button>
         </div>
         </div>
         </div>
@@ -173,8 +173,8 @@
             </form>
           </div>
           <div class="modal-footer" >
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-            <button  [disabled]= "formClient.invalid" (click)="addAllClient()"  class="btn btn-success" data-bs-dismiss="modal">Ajouter</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+            <button  [disabled]= "formClient.invalid" (click)="addAllClient()"  class="btn btn-outline-success" data-bs-dismiss="modal">Ajouter</button>
           </div>
         </div>
       </div>
@@ -292,8 +292,8 @@
             </form>
           </div>
           <div class="modal-footer" >
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-            <button  [disabled]= "formUpdate.invalid" (click)="confirmUpdate()"  class="btn btn-success" data-bs-dismiss="modal">Mettre à jour</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
+            <button  [disabled]= "formUpdate.invalid" (click)="confirmUpdate()"  class="btn btn-outline-success" data-bs-dismiss="modal">Mettre à jour</button>
           </div>
         </div>
       </div>

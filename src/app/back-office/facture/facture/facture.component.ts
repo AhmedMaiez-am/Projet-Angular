@@ -24,8 +24,10 @@ export class FactureComponent implements OnInit {
   getAllFacture(){
     this.serviceFacture.getAllFacture().subscribe((res)=>{
       this.listFacture=res;
+      console.log(res)
     })
   }
+
 
 idFacture: number;
 deleteFacture(id:number){
@@ -58,6 +60,16 @@ confirmActive(){
     console.log(res);
     this.getAllFacture()
   })
+}
+
+
+listTrié:Facture[]
+triFactures(){
+  this.serviceFacture.triFacture().subscribe((res)=>{
+    this.listTrié=res;
+    console.log(res)
+  })
+
 }
 
 }

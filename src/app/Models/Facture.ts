@@ -6,5 +6,5 @@ export class Facture {
     montantRemise:number;
    dateFacture:string;
    active:boolean;
-   detailFacture:detailFacture;
+   detailFacture:detailFacture[];
 }
