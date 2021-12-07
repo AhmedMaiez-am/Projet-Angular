@@ -11,14 +11,28 @@
 <div class="container">
 
 
-  <div class="text-center " style="color:#4B4645;">   <h1>Liste des Factures</h1><br>
-    <h4>Opérations</h4>
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-      <button (click)="triFactures()" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-sort"></i>   Filtrer par montant</button>
-      <button (click)="getActiveFac()" type="button" data-bs-toggle="modal" data-bs-target="#getActiveModal" class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="far fa-check-circle"></i>   Factures Actives</button>
-      <button (click)="getInactiveFac()" type="button" data-bs-toggle="modal" data-bs-target="#getInactiveModal" class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-exclamation-circle"></i>   Facture Inactives</button>
+  <div class="text-center " style="color:#4B4645;">   <h1>Gestion des Factures</h1><br>
+    <button (click)="getAllFacture()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat" ><i class="fas fa-align-justify"></i>   Tous les factures</button>
 
+    <br>
+    <div class="card text-center">
+      <div class="card-header">
+        <h4>Opérations</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Bienvenue dans l'espace de gestion des factures</p>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button (click)="triFactures()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-sort"></i>   Filtrer par montant du facture</button>
+          <button (click)="getActiveFac()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="far fa-check-circle"></i>   Factures Actives</button>
+          <button (click)="getInactiveFac()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-exclamation-circle"></i>   Facture Inactives</button>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Récupérer facture par date
+       <div> <input (change)="searchByDate(getDate.value)" #getDate class ="text-center btn btn-outline-primary" type="date"></div>
+      </div>
     </div>
+
   </div>
 
 
@@ -57,144 +71,6 @@
 </div>
 
 
-<div class="modal fade" id="getActiveModal" tabindex="-1" aria-labelledby="getActiveModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: rgb(0, 180, 252); color: rgb(68, 42, 4);">
-        <h5 class="modal-title" id="deleteModalLabel" style="font-weight: bold; margin-left: 150px;">FACTURES ACTIVES</h5>
-      <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
-    </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-4 " *ngFor="let item of listActive; let i = index">
-
-              <div [class]="item.active?'card border-info mb-3':'card border-danger mb-3'"  >
-
-                <div [class]="item.active?'card-header text-dark bg-info mb-3':'card-header text-white bg-danger mb-3'">
-                 <p><strong>Date du facture : </strong></p> {{item.dateFacture}}
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title"><strong>Montant du facture : </strong> {{item.montantFacture}}</h5>
-                    <p class="card-text"><strong> Montant du remise : </strong>{{item.montantRemise}}</p>
-                    <div *ngIf="item.active == true ; then active else nonActive"></div>
-                    <ng-template #active><strong> Etat de la facture : </strong> Activée</ng-template>
-                    <ng-template #nonActive><strong> Etat de la facture : </strong> Désactivée</ng-template>
-                    <div *ngFor="let detailItem of item.detailFacture; let j = index">
-                      <p class="card-text"><strong> Quantité : </strong>{{detailItem.qte}}</p>
-                    </div>
-                <div class="mt-5">
-                  <div *ngIf="item.active == false; then conditionActive else conditionInactive" ></div>
-                   <button (click)="deleteFacture(item.idFacture)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-dark ml-3" > <i class="fas fa-trash-alt"></i>  Supprimer</button>
-                   <ng-template #conditionInactive>
-                   <button (click)="setFactureInactive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#inactiveModal" class="btn btn-outline-danger ml-5 px-4" ><i class="fas fa-times"></i>  Désactiver</button>
-                  </ng-template>
-                  <ng-template #conditionActive>
-                   <button (click)="setFactureActive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#activeModal" class="btn btn-outline-info ml-5 px-4" ><i class="fas fa-check-double"></i>  Activer</button>
-                  </ng-template>
-                  </div>
-                </div>
-              </div>
-          </div>
-          </div>
-        <div class="modal-footer" >
-          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Retour</button>
-        </div>
-        </div>
-        </div>
-        </div></div>
-
-
-        <div class="modal fade" id="getInactiveModal" tabindex="-1" aria-labelledby="getInactiveModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header" style="background-color: rgb(163, 71, 71); color: rgb(236, 235, 232);">
-                <h5 class="modal-title" id="deleteModalLabel" style="font-weight: bold; margin-left: 150px;">FACTURES INACTIVES</h5>
-              <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
-            </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-4 " *ngFor="let item of listInactive; let i = index">
-
-                      <div [class]="item.active?'card border-info mb-3':'card border-danger mb-3'"  >
-
-                        <div [class]="item.active?'card-header text-dark bg-info mb-3':'card-header text-white bg-danger mb-3'">
-                         <p><strong>Date du facture : </strong></p> {{item.dateFacture}}
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title"><strong>Montant du facture : </strong> {{item.montantFacture}}</h5>
-                            <p class="card-text"><strong> Montant du remise : </strong>{{item.montantRemise}}</p>
-                            <div *ngIf="item.active == true ; then active else nonActive"></div>
-                            <ng-template #active><strong> Etat de la facture : </strong> Activée</ng-template>
-                            <ng-template #nonActive><strong> Etat de la facture : </strong> Désactivée</ng-template>
-                            <div *ngFor="let detailItem of item.detailFacture; let j = index">
-                              <p class="card-text"><strong> Quantité : </strong>{{detailItem.qte}}</p>
-                            </div>
-                        <div class="mt-5">
-                          <div *ngIf="item.active == false; then conditionActive else conditionInactive" ></div>
-                           <button (click)="deleteFacture(item.idFacture)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-dark ml-3" > <i class="fas fa-trash-alt"></i>  Supprimer</button>
-                           <ng-template #conditionInactive>
-                           <button (click)="setFactureInactive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#inactiveModal" class="btn btn-outline-danger ml-5 px-4" ><i class="fas fa-times"></i>  Désactiver</button>
-                          </ng-template>
-                          <ng-template #conditionActive>
-                           <button (click)="setFactureActive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#activeModal" class="btn btn-outline-info ml-5 px-4" ><i class="fas fa-check-double"></i>  Activer</button>
-                          </ng-template>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-                <div class="modal-footer" >
-                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Retour</button>
-                </div>
-                </div>
-                </div>
-                </div></div>
-<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: black; color: blanchedalmond;">
-        <h5 class="modal-title" id="deleteModalLabel" style="font-weight: bold; margin-left: 150px;">FACTURES DU MONTANT LE PLUS BAS VERS LE PLUS ELEVE</h5>
-      <button type="button" class="btn-close" style="background-color: blanchedalmond;" data-bs-dismiss="modal" aria-label="Close" ></button>
-    </div>
-
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-4 " *ngFor="let item of listFacture; let i = index">
-
-              <div [class]="item.active?'card border-info mb-3':'card border-danger mb-3'"  >
-
-                <div [class]="item.active?'card-header text-dark bg-info mb-3':'card-header text-white bg-danger mb-3'">
-                 <p><strong>Date du facture : </strong></p> {{item.dateFacture}}
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title"><strong>Montant du facture : </strong> {{item.montantFacture}}</h5>
-                    <p class="card-text"><strong> Montant du remise : </strong>{{item.montantRemise}}</p>
-                    <div *ngIf="item.active == true ; then active else nonActive"></div>
-                    <ng-template #active><strong> Etat de la facture : </strong> Activée</ng-template>
-                    <ng-template #nonActive><strong> Etat de la facture : </strong> Désactivée</ng-template>
-                    <div *ngFor="let detailItem of item.detailFacture; let j = index">
-                      <p class="card-text"><strong> Quantité : </strong>{{detailItem.qte}}</p>
-                    </div>
-                <div class="mt-5">
-                  <div *ngIf="item.active == false; then conditionActive else conditionInactive" ></div>
-                   <button (click)="deleteFacture(item.idFacture)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-dark ml-3" > <i class="fas fa-trash-alt"></i>  Supprimer</button>
-                   <ng-template #conditionInactive>
-                   <button (click)="setFactureInactive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#inactiveModal" class="btn btn-outline-danger ml-5 px-4" ><i class="fas fa-times"></i>  Désactiver</button>
-                  </ng-template>
-                  <ng-template #conditionActive>
-                   <button (click)="setFactureActive(item.idFacture)" data-bs-toggle="modal" data-bs-target="#activeModal" class="btn btn-outline-info ml-5 px-4" ><i class="fas fa-check-double"></i>  Activer</button>
-                  </ng-template>
-                  </div>
-                </div>
-              </div>
-          </div>
-          </div>
-        <div class="modal-footer" >
-          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Retour</button>
-        </div>
-        </div>
-        </div>
-        </div></div>
 
 <div class="modal fade" id="inactiveModal" tabindex="-1" aria-labelledby="inactiveModalLabel" aria-hidden="true">
   <div class="modal-dialog">

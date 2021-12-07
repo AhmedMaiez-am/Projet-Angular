@@ -1,3 +1,3 @@
 export enum categorieClient {
-  Fidele, Ordinaire, Premuim
+  Fidele, Ordinaire, Premium
 }

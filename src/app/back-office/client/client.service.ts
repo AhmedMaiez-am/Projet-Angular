@@ -47,4 +47,12 @@ export class ClientService {
 
   }
 
+  getPremiumClient(): Observable<Client[]> {
+    return this.httpC.get<Client[]>(this.url + 'getPremium');
+  }
+
+  getNotPremiumClient(): Observable<Client[]> {
+    return this.httpC.get<Client[]>(this.url + 'get_non_premium');
+  }
+
 }

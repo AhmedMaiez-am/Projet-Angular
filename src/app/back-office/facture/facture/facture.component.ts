@@ -63,30 +63,35 @@ confirmActive(){
 }
 
 
-listTrié:Facture[]
 triFactures(){
   this.serviceFacture.triFacture().subscribe((res)=>{
-    this.listTrié=res;
+    this.listFacture=res;
     console.log(res)
   })
 }
 
-listActive:Facture[]
+
 getActiveFac(){
   this.serviceFacture.getActiveFacture().subscribe((res)=>{
-    this.listActive=res;
+    this.listFacture=res;
     console.log(res)
   })
 
 }
 
-listInactive:Facture[]
 getInactiveFac(){
   this.serviceFacture.getInactiveFacture().subscribe((res)=>{
-    this.listInactive=res;
+    this.listFacture=res;
     console.log(res)
   })
 
+}
+
+
+searchByDate(date:string){
+  this.serviceFacture.searchByDate(date).subscribe((res)=> {
+    this.listFacture=res;
+  })
 }
 
 }

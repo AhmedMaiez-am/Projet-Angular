@@ -109,4 +109,16 @@ export class ClientComponent implements OnInit {
 
   }
 
+  getPremium(){
+    this.serviceClient.getPremiumClient().subscribe((res) =>{
+      this.listClient=res;
+    })
+  }
+
+  getNonPremium(){
+    this.serviceClient.getNotPremiumClient().subscribe((res) => {
+      this.listClient=res;
+    })
+  }
+
 }

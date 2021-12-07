@@ -12,22 +12,41 @@
 
 
 
-  <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> </div>
-  <div class="text-center "> <button type="button" class="btn btn-outline-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i>   Ajouter un nouveau client</button>
-  </div>
+  <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> <br>
+  <button (click)="getAllClient()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat" ><i class="fas fa-align-justify"></i>   Tous les Clients</button>
+</div>
+    <div class="card text-center">
+      <div class="card-header">
+        <h4>Opérations</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Bienvenue dans l'espace de gestion des clients</p>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button (click)="getPremium()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="far fa-check-circle"></i>   Clients Premium</button>
+          <button (click)="getNonPremium()"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-exclamation-circle"></i>   Clients Non Premium</button>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Recherche clients
+      <div  class="col-3 mb-3">
+        <div > <input style="text-align: center; width: 1190px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Tapez le nom du client..." aria-label="Search"></div>
+      </div>
+    </div>
+    </div>
 
-  <div  class="col-3 mb-3">
-    <div > <input style="text-align: center; width: 1150px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher un client..." aria-label="Search"></div>
-   </div>
+
   <div class="row">
   <div class="col-4 " *ngFor="let item of listClient; let i = index">
-      <div class="card border-info mb-3"  >
-        <div class="card-header text-dark bg-info mb-3">
+    <div [class]="item.categorieClient.toString()=='Premium'?'card border-warning mb-3':'card border-info mb-3'"  >
+
+      <div [class]="item.categorieClient.toString()=='Premium'?'card-header text-dark bg-warning mb-3':'card-header text-black bg-info mb-3'">
          <p><strong>Nom et prénom : </strong></p> {{item.nom + ' ' + item.prenom }}
         </div>
         <div class="card-body">
           <h5 class="card-title"><strong>Email : </strong> {{item.email}}</h5>
-            <p class="card-text"><strong> Catégorie : </strong>{{item.categorieClient}}</p>
+          <div *ngIf="item.categorieClient.toString()=='Premium'? 'premium' : 'nonPremium'"></div>
+          <ng-template #premium></ng-template> <p class="card-text"><strong> Catégorie : </strong>{{item.categorieClient}}</p>
+          <ng-template #nonPremium></ng-template>
             <p class="card-text"><strong> Profession: </strong>{{item.profession}}</p>
          <div class="mt-5">
            <button (click)="deleteClient(item.idClient)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-outline-danger" > <i class="fas fa-trash-alt"></i>  Supprimer</button>

@@ -10,16 +10,18 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { ProductComponent } from './product/product.component';
 import { StockComponent } from './stock/stock.component';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, SideBarComponent, FooterComponent, BodyComponent, ProductComponent, StockComponent ],  imports: [
+
+  declarations: [HomeComponent, HeaderComponent, SideBarComponent, FooterComponent, BodyComponent, ProductComponent, StockComponent ],
+  imports: [
     CommonModule,
     BackOfficeRoutingModule,
     FormsModule,
      ReactiveFormsModule,
-     NgxQRCodeModule
+
+
   ]
 })
 export class BackOfficeModule { }

@@ -51,4 +51,8 @@ export class FactureService {
     return this.httpC.get<Facture[]>(this.url + 'get-inactive');
   }
 
+  searchByDate(date: string): Observable<Facture[]>{
+return this.httpC.get<Facture[]>(this.url+'searchByDate/' + date);
+  }
+
 }
