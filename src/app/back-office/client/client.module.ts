@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './client/client.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({

@@ -22,14 +22,15 @@
       <div class="card-body">
         <p class="card-text">Bienvenue dans l'espace de gestion des clients</p>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button (click)="addAllClient()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-plus-circle"></i>   Ajouter un client</button>
           <button (click)="getPremium()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="far fa-check-circle"></i>   Clients Premium</button>
           <button (click)="getNonPremium()"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-exclamation-circle"></i>   Clients Non Premium</button>
         </div>
       </div>
       <div class="card-footer text-muted">
-        Recherche clients
+        <strong> Recherche clients</strong>
       <div  class="col-3 mb-3">
-        <div > <input style="text-align: center; width: 1190px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Tapez le nom du client..." aria-label="Search"></div>
+        <div > <input style="text-align: center; width: 1180px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Tapez le nom du client..." aria-label="Search"></div>
       </div>
     </div>
     </div>

@@ -10,7 +10,6 @@ import { ClientService } from '../client.service';
 })
 export class ClientComponent implements OnInit {
 
-
   constructor(private serviceClient:ClientService) { }
 
   formClient:FormGroup;
@@ -122,3 +121,4 @@ export class ClientComponent implements OnInit {
   }
 
 }
+

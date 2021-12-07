@@ -5,14 +5,13 @@ import { FactureRoutingModule } from './facture-routing.module';
 import { FactureComponent } from './facture/facture.component';
 
 
-
 @NgModule({
-  declarations: [FactureComponent],
+  declarations: [
+    FactureComponent
+  ],
   imports: [
     CommonModule,
-    FactureRoutingModule,
-
-
+    FactureRoutingModule
   ]
 })
 export class FactureModule { }

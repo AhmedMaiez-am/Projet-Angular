@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Facture } from 'src/app/Models/Facture';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -56,3 +55,4 @@ return this.httpC.get<Facture[]>(this.url+'searchByDate/' + date);
   }
 
 }
+

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { detailFacture } from 'src/app/Models/detailFacture';
 import { Facture } from 'src/app/Models/Facture';
 import { FactureService } from '../facture.service';
@@ -10,8 +9,6 @@ import { FactureService } from '../facture.service';
   styleUrls: ['./facture.component.css']
 })
 export class FactureComponent implements OnInit {
-
-
   detailFacture: detailFacture;
   id:number;
   constructor(private serviceFacture:FactureService) { }
@@ -95,3 +92,4 @@ searchByDate(date:string){
 }
 
 }
+
