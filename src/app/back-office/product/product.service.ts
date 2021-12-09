@@ -29,4 +29,14 @@ export class ProductService {
   updateProduct(product:Product,idRayon:number,idStock:number,cat:string):Observable<Product>{
     return this.myhttpclient.put<Product>(this.productsUrl+`/update/${idRayon}/${idStock}/${cat}`,product);
   }
+  SearchProductByName(name: string): Observable<Product[]> {
+    return this.myhttpclient.get<Product[]>(this.productsUrl + '/retrieve-produitByLibelle/' + name);
+  }
+  TriProduitASC(): Observable<Product[]>{
+    return this.myhttpclient.get<Product[]>(this.productsUrl + '/retrieve-produitASC');
+  }
+  TriProduitDESC(): Observable<Product[]>{
+    return this.myhttpclient.get<Product[]>(this.productsUrl + '/retrieve-produitDESC');
+  }
 }
+

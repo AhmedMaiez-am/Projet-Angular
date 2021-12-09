@@ -111,5 +111,25 @@ export class ProductComponent implements OnInit {
       this.getAllProducts();
     });
   }
+  SearchVal:string='';
+  Search() {
+    if (this.SearchVal === '') {
+      this.getAllProducts();
+    } else {
+      this.productService.SearchProductByName(this.SearchVal).subscribe((res) => {
+        this.my_products = res;
+      });
+    }
+  }
+  triASC(){
+    this.productService.TriProduitASC().subscribe((res)=> {
+      this.my_products =res;
+    });
+  }
+  triDESC(){
+    this.productService.TriProduitDESC().subscribe((res)=> {
+      this.my_products =res;
+    });
+  }
 
 }
