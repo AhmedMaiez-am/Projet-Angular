@@ -22,6 +22,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
      ReactiveFormsModule,
      CommonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

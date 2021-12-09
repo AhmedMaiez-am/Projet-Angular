@@ -7,9 +7,22 @@
     transition: 0.5s ease;
     margin:30px;
   }
-  </style>
-<div class="container">
+  .shimmer {
+  color: grey;
+  -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s infinite;
+}
 
+@keyframes shimmer {
+  100% {-webkit-mask-position:left}
+}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<div class="container">
 
 
   <div class="text-center " style="color:#4B4645;">   <h1>Liste des clients</h1> <br>
@@ -18,7 +31,7 @@
     <div class="card text-center">
       <div class="card-header">
         <h4>Opérations</h4>
-      </div>
+      </div> 
       <div class="card-body">
         <p class="card-text">Bienvenue dans l'espace de gestion des clients</p>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -38,9 +51,9 @@
 
   <div class="row">
   <div class="col-4 " *ngFor="let item of listClient; let i = index">
-    <div [class]="item.categorieClient.toString()=='Premium'?'card border-warning mb-3':'card border-info mb-3'"  >
+    <div [class]="item.categorieClient.toString()=='Premium'?'shimmer card border-warning mb-3 ':'card border-info mb-3'"  >
 
-      <div [class]="item.categorieClient.toString()=='Premium'?'card-header text-dark bg-warning mb-3':'card-header text-black bg-info mb-3'">
+      <div [class]="item.categorieClient.toString()=='Premium'?'card-header shimmer text-dark bg-warning mb-3 ':'card-header text-black bg-info mb-3'">
          <p><strong>Nom et prénom : </strong></p> {{item.nom + ' ' + item.prenom }}
         </div>
         <div class="card-body">
@@ -194,7 +207,7 @@
           </div>
           <div class="modal-footer" >
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Annuler</button>
-            <button  [disabled]= "formClient.invalid" (click)="addAllClient()"  class="btn btn-outline-success" data-bs-dismiss="modal">Ajouter</button>
+            <button  [disabled]= "formClient.invalid" (click)="addAllClient()" class="btn btn-outline-success" data-bs-dismiss="modal">Ajouter</button>
           </div>
         </div>
       </div>
@@ -318,4 +331,5 @@
         </div>
       </div>
     </div>
+
 

@@ -1,31 +1,40 @@
- <!-- Main Sidebar Container -->
+ <style>
+   .brand-link {
+    border-bottom: 1px solid #4b545c;
+    color: rgba(255,255,255,.8);
+}
+.shimmer {
+  color: grey;
+  -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s infinite;
+}
+a{
+  text-decoration: none;
+}
+
+@keyframes shimmer {
+  100% {-webkit-mask-position:left}
+}
+ </style>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <!-- Brand Logo -->
+<a href="index.html" class="brand-link">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-store mr-3"></i>    <span class="brand-text font-weight-light">All Shopping</span>
+</a>
 
-
-  <!-- Sidebar -->
   <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+  <div class="info shimmer">
+    <h1 style="color:white;">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bienvenue</h1>
+  </div>
+</div>
 
 
 
-    <!-- SidebarSearch Form -->
-    <!--<div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
-      </div>
-    </div>-->
-
-    <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
 
         <li class="nav-item">
           <a [routerLink]="['/back-office/product']" class="nav-link">
@@ -81,8 +90,6 @@
 
       </ul>
     </nav>
-    <!-- /.sidebar-menu -->
   </div>
-  <!-- /.sidebar -->
  </aside>
 

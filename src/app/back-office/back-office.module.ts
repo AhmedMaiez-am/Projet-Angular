@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BackOfficeRoutingModule,
     FormsModule,
-     ReactiveFormsModule,
+     ReactiveFormsModule
   ]
 })
 export class BackOfficeModule { }
