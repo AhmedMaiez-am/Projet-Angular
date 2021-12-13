@@ -25,11 +25,28 @@
           <button (click)="triFactures()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-sort"></i>   Filtrer par montant du facture</button>
           <button (click)="getActiveFac()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="far fa-check-circle"></i>   Factures Actives</button>
           <button (click)="getInactiveFac()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-exclamation-circle"></i>   Facture Inactives</button>
-        </div>
+
       </div>
       <div class="card-footer text-muted">
-        Récupérer facture par date
+        Récupérer facture par date :
        <div> <input (change)="searchByDate(getDate.value)" #getDate class ="text-center btn btn-outline-primary" type="date"></div>
+       <br>
+       Récupérer facture par valeur du montant :
+       <br>
+       <mat-slider
+          thumbLabel
+          [displayWith]="formatLabel"
+          tickInterval="1000"
+          step="500"
+          min="0"
+          max="50000"
+          aria-label="units"
+          (input)="searchByMontant($event)">
+        </mat-slider>
+<br>
+Télécharger la liste des factures<br>
+<button (click)="openPDF()" type="button"  class="btn btn-outline-primary mb-3" data-bs-whatever="@fat"><i class="fas fa-file-download"></i>   Télécharger</button>
+       </div>
       </div>
     </div>
 
@@ -37,7 +54,7 @@
 
 
 
-  <div class="row">
+  <div class="row" id="htmlData">
   <div class="col-4 " *ngFor="let item of listFacture; let i = index">
 
       <div [class]="item.active?'card border-info mb-3':'card border-danger mb-3'"  >
@@ -45,7 +62,7 @@
         <div [class]="item.active?'card-header text-dark bg-info mb-3':'card-header text-white bg-danger mb-3'">
          <p><strong>Date du facture : </strong></p> {{item.dateFacture}}
         </div>
-        <div class="card-body">
+        <div class="card-body" >
           <h5 class="card-title"><strong>Montant du facture : </strong> {{item.montantFacture}}</h5>
             <p class="card-text"><strong> Montant du remise : </strong>{{item.montantRemise}}</p>
             <div *ngIf="item.active == true ; then active else nonActive"></div>

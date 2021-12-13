@@ -54,5 +54,11 @@ export class FactureService {
 return this.httpC.get<Facture[]>(this.url+'searchByDate/' + date);
   }
 
+  searchByMontant(montant: number): Observable<Facture[]>{
+    return this.httpC.get<Facture[]>(this.url+'searchBymontant/' + montant);
+  }
+
+ 
+
 }
 

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { FactureRoutingModule } from './facture-routing.module';
 import { FactureComponent } from './facture/facture.component';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { FactureComponent } from './facture/facture.component';
   ],
   imports: [
     CommonModule,
-    FactureRoutingModule
+    FactureRoutingModule,
+    MatSliderModule
   ]
 })
 export class FactureModule { }

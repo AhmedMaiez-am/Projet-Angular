@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { detailFacture } from 'src/app/Models/detailFacture';
 import { Facture } from 'src/app/Models/Facture';
 import { FactureService } from '../facture.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-facture',
@@ -91,5 +94,41 @@ searchByDate(date:string){
   })
 }
 
+montant: number
+searchByMontant(event){
+  this.montant=event.value
+  this.serviceFacture.searchByMontant(this.montant).subscribe((res)=> {
+    this.listFacture=res;
+  })
+}
+formatLabel(value: number) {
+  if (value >= 1000) {
+    return Math.round(value / 1000) + 'k';
+  }
+
+  return value;
+}
+
+/* exportPDF(){
+  this.serviceFacture.exportPDF().subscribe((res) => {
+    this.listFacture=res;
+  })
+} */
+public openPDF():void {
+  let DATA = document.getElementById('htmlData');
+
+  html2canvas(DATA).then(canvas => {
+
+      let fileWidth = 208;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+
+      PDF.save('liste_des_factures.pdf');
+  });
+  }
 }
 

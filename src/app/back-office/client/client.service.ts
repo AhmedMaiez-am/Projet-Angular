@@ -55,5 +55,17 @@ export class ClientService {
     return this.httpC.get<Client[]>(this.url + 'get_non_premium');
   }
 
+  getCountPremium(): Observable<number>{
+    return this.httpC.get<number>(this.url+'getCountPremium');
+  }
+
+  getCountFidele(): Observable<number>{
+    return this.httpC.get<number>(this.url+'getCountFidele');
+  }
+
+  getCountOrdinaire(): Observable<number>{
+    return this.httpC.get<number>(this.url+'getCountOrdinaire');
+  }
+
 }
 
