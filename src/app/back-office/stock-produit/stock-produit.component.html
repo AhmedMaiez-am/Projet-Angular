@@ -1,0 +1,17 @@
+
+<div class="text-center " style="color:darkgreen;">   <h1>Les Produit Disponibles</h1> </div>
+
+<div class="titre"> {{stock.libelleStock}} </div>
+
+
+<div class="card" style="width: 18rem;" *ngFor="let item of stock.produitList; let i = index">
+  <div class="card-header">
+    {{item.libelle}}
+  </div>
+  <ul class="list-group list-group-flush" >
+    <li class="list-group-item " style="background: darkgrey;" ><span style="color: darkred; font-weight: bold;"> Catégorie :</span> {{item.detailProduit.categorieProduit}}</li>
+    <li class="list-group-item"> Le Code de Ce Produit : <span style="color: darkred;"> {{item.code}}</span>  </li>
+    <li class="list-group-item"> Le Prix : {{item.prixUnitaire}}</li>
+
+  </ul>
+</div>

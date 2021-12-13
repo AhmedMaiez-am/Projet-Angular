@@ -1,39 +1,28 @@
 <div class="container">
-    
-  <style>
 
-
-    .card:hover {
-      transform: scale(1.15);
-      box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
-    }
-    .card {
-      transition: 0.5s ease;
-      cursor: pointer;
-      margin:30px;
-    }
-    </style>
 
   <div class="text-center " style="color:#4B4645;">   <h1>LISTE DES RAYONS</h1> </div>
   <div class="text-center "> <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i></button>
   </div>
   <div  class="col-3 mb-3">
-    <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Rayon..." aria-label="Search"></div>
+    <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Rayon... "  aria-label="Search"></div>
    </div>
      <div class="text-center">
-      <button (click)="SortDesc()" type="button" class="btn btn-dark mb-3" >Up <i class="fas fa-sort-alpha-up"></i></button>▲▼<button (click)="SortAsc()" type="button" class="btn btn-success mb-3" >Down <i class="fas fa-sort-alpha-down"></i></button>
+      <button (click)="SortDesc()" type="button" class= "btn btn-outline-secondary mb-3" >Up <i class="fas fa-sort-alpha-up"></i></button>▲▼<button (click)="SortAsc()" type="button" class= "btn btn-outline-secondary mb-3" >Down <i class="fas fa-sort-alpha-down"></i></button>
     </div>
 
-  <div class="row">    
+  <div class="row">
   <div class="col-4 " *ngFor="let item of ListeRayons; let i = index">
       <div class="card" >
-        <div class="card-header" style="background-color: #2E4053; font-weight: bold; color: white">
-          {{item.libelle}}
+        <div class="card-header"  style="background-color: #2E4053; font-weight: bold; color: whitesmoke">
+          {{item.libelle }}
         </div>
-        <div>        <button class=" btn btn-light w-100" style="color: steelblue; font-weight: bold;" type="button">Afficher les produits</button>      </div>
+        <button  class=" btn btn-light w-100" style="color: steelblue; font-size: small; background-color: black; font-weight: bold;" type="button"> Les produits</button>    
 
         <div class="card-body" style="background-color: powderblue;">
-          <h5 class="card-title">Le Code: {{item.code}}</h5>
+          <h5 class="card-title" style="font-weight: bold;"> Code:<span   style="color: darkblue;"> {{item.code}}</span></h5>
+          <h5 class="card-title" style="font-weight: bold; font-size: small;"> Created At :<span   style="color: darkgoldenrod;"> {{item.createdAt}}</span></h5>
+
          <div class="mt-5"> <button  (click)="getId(item.idRayon)" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-danger "><i class="fas fa-trash-alt"></i></button>
                             <button type="button" (click)="updateRayon(item)" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-dark ml-5 px-4" ><i class="fas fa-pen-alt"></i>Modifer</button>
            </div>
@@ -42,7 +31,7 @@
   </div>
   </div>
     </div>
-  
+
   <!-- Modal Add -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -55,10 +44,10 @@
           <form [formGroup]="rayon" >
             <div class="mb-3">
               <label for="libelle" class="col-form-label">Libelle Rayon:</label>
-              <input formControlName="libelle" type="text" class="form-control" id="libelle" 
+              <input formControlName="libelle" type="text" class="form-control" id="libelle"
               name="libelle" placeholder="Ajouter votre Libelle ..."
               [ngClass]="{ 'is-invalid':rayon.get('libelle').touched && rayon.get('libelle').invalid }"
-             
+
               />
               <div class="invalid-feedback" *ngIf="rayon.get('libelle').touched && rayon.get('libelle').invalid">
                 <p *ngIf="rayon.get('libelle').errors.required">Ajouter votre libelle SVP</p>
@@ -67,9 +56,9 @@
             <div class="mb-3">
               <label for="code" class="col-form-label">Code de Rayon:</label>
               <input  formControlName="code" type="number" class="form-control" id="code"
-              name="code" placeholder="Ajouter votre Code ..." 
-              [ngClass]="{ 'is-invalid':rayon.get('code').touched && rayon.get('code').invalid }" 
-             
+              name="code" placeholder="Ajouter votre Code ..."
+              [ngClass]="{ 'is-invalid':rayon.get('code').touched && rayon.get('code').invalid }"
+
               />
               <div class="invalid-feedback" *ngIf="rayon.get('code').touched && rayon.get('code').invalid">
                 <p *ngIf="rayon.get('code').errors.required">Ajouté votre code SVP</p>
@@ -154,4 +143,3 @@
   </div>
 </div>
 
-  

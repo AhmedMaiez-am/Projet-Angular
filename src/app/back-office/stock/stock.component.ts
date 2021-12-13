@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Stock } from 'src/app/Models/Stock';
 import { StockService } from './stock.service';
 
@@ -11,7 +12,7 @@ import { StockService } from './stock.service';
 })
 export class StockComponent implements OnInit {
 
-  constructor(private serviceStock:StockService) { }
+  constructor(private serviceStock:StockService , private toastr:ToastrService) { }
 
   stock:FormGroup;
   MyStock:Stock;
@@ -51,6 +52,8 @@ export class StockComponent implements OnInit {
   deleteStocks(){
     this.serviceStock.deleteStock(this.idStock).subscribe((res) => {
       this.getAllStocks()
+      this.toastr.error('votre stock a été supprimé avec succès','SUPPRISSION DE STOCK');
+
     })
 
   }
@@ -60,6 +63,7 @@ export class StockComponent implements OnInit {
     this.MyStock=new Stock(this.stock.get('qteMin').value,this.stock.get('libelleStock').value)
     this.serviceStock.addStock(this.MyStock).subscribe((res) =>{
       this.getAllStocks()
+      this.toastr.success('votre stock a été ajouté avec succès','AJOUT DE STOCK');
     })
   }
 
@@ -80,12 +84,15 @@ export class StockComponent implements OnInit {
       qteMin: stock.qteMin
       
     })
+
   }
 
   confirmUpdate(){
     this.serviceStock.updateStock(this.formUpdate.getRawValue()).subscribe((res) => {
       this.getAllStocks()
-      console.log(res)
+      console.log(res),
+      this.toastr.info('votre stock a été Modifié avec succès','MODIFICATION DE STOCK');
+
     })
   }
 
@@ -112,5 +119,28 @@ export class StockComponent implements OnInit {
         }
       )
       }
+
+      StockBesoin(){
+        this.serviceStock.StockBesoin().subscribe(res=>{
+          this.ListeStocks=res;
+        })
+      }
+
+      calculS(idStock:number){
+
+        this.serviceStock.calculS(idStock).subscribe(res=>{
+          this.getAllStocks();
+        })
+
+      }
+
+      retreieveById(){
+        this.serviceStock.retreiveById(this.idStock).subscribe((res) => {
+          this.getAllStocks()
+    
+        })
+    
+      }
+
 
 }

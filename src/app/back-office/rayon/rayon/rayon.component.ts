@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Rayon } from 'src/app/Models/Rayon';
 import { RayonService } from '../rayon.service';
 
@@ -10,7 +11,7 @@ import { RayonService } from '../rayon.service';
 })
 export class RayonComponent implements OnInit {
 
-  constructor(private serviceRayon:RayonService) { }
+  constructor(private serviceRayon:RayonService , private toastr:ToastrService) { }
 
   rayon:FormGroup;
   MyRayon:Rayon;
@@ -50,6 +51,9 @@ export class RayonComponent implements OnInit {
   deleteRayon(){
     this.serviceRayon.deleteRayon(this.idRayon).subscribe((res) => {
       this.getAllRayon()
+      this.toastr.error('votre rayon a été supprimé avec succès','SUPPRISSION DE RAYON');
+
+      
     })
 
   }
@@ -59,6 +63,8 @@ export class RayonComponent implements OnInit {
     this.MyRayon=new Rayon(this.rayon.get('code').value,this.rayon.get('libelle').value)
     this.serviceRayon.addRayon(this.MyRayon).subscribe((res) =>{
       this.getAllRayon()
+      this.toastr.success('votre rayon a été ajouté avec succès','AJOUT DE RAYON');
+
     })
   }
 
@@ -84,7 +90,9 @@ export class RayonComponent implements OnInit {
   confirmUpdate(){
     this.serviceRayon.updateRayon(this.formUpdate.getRawValue()).subscribe((res) => {
       this.getAllRayon()
-      console.log(res)
+      console.log(res),
+      this.toastr.info('votre rayon a été modifié avec succès','MODIFICATION DE RAYON');
+
     })
   }
 

@@ -53,4 +53,18 @@ export class StockService {
     return this.httpC.get<Stock[]>(this.url + 'stock-sortASC');
   }
 
+
+  StockBesoin(): Observable<Stock[]> {
+    return this.httpC.get<Stock[]>(this.url + 'stock-Besoin');
+  
+  }
+
+  calculS(idStock: number) {
+    return this.httpC.put(this.url + 'stockCal/' + idStock, this.httpOptions);
+  }
+
+  retreiveById(idStock: number): Observable<Stock> {
+    const url = this.url + 'retrieve-stock/' + idStock;
+    return this.httpC.get<Stock>(url);
+  }
 }

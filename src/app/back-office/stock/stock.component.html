@@ -1,18 +1,5 @@
 <div class="container">
-    
-  <style>
-
-
-    .card:hover {
-      transform: scale(1.15);
-      box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
-    }
-    .card {
-      transition: 0.5s ease;
-      cursor: pointer;
-      margin:30px;
-    }
-    </style>
+  
 
 <div class="text-center " style="color:#4B4645;">   <h1>LISTE DES STOCKS</h1> </div>
 
@@ -22,15 +9,28 @@
  <div > <input style="text-align: center; width: 1050px;" [(ngModel)]="searchVal" (keyup)="search()" class="form-control " type="search" placeholder="Rechercher Votre Stock..." aria-label="Search"></div>
 </div>
 <div class="text-center">
-  <button (click)="SortDescStock()" type="button" class="btn btn-dark mb-3" >Up <i class="fas fa-sort-alpha-up"></i></button>▲▼<button (click)="SortAscStock()" type="button" class="btn btn-success mb-3" >Down <i class="fas fa-sort-alpha-down"></i></button>
+  <button (click)="SortDescStock()" type="button" class= "btn btn-outline-secondary mb-3 " >Up <i class="fas fa-sort-alpha-up"></i></button>
+  ▲▼
+  <button (click)="SortAscStock()" type="button" class="btn btn-outline-secondary mb-3" >Down <i class="fas fa-sort-alpha-down"></i></button>
+  <button (click)="StockBesoin()" type="button" class= "btn btn-outline-danger mb-3 " >Besoin Des Produits</button>
+
 </div>
+
+
+
+
 <div class="row">    
 <div class="col-4" *ngFor="let item of ListeStocks; let i = index">
     <div class="card" >
       <div class="card-header" style="background-color: #2E4053; font-weight: bold; color: white">
         {{item.libelleStock}} 
       </div>
-      <div>        <button class=" btn btn-light w-100" style="color: steelblue; font-weight: bold;" type="button">Afficher les produits</button>      </div>
+
+      <div>      
+          <button [routerLink]="['/back-office/detailstock',item.idStock]" class=" btn btn-light w-50" style="color: steelblue; font-size: small; background-color: black; font-weight: bold;" type="button"> les produits</button>    
+          <button (click)=calculS(item.idStock) class=" btn btn-light w-50" style="color: chartreuse; font-size: small; background-color: black; font-weight: bold;" type="button">La Quantité</button>
+      </div>
+
       <div class="card-body" style="background-color: powderblue;">
         <h5 class="card-title">La quntitée disponibles: <span style="font-weight: bold; color: green;"> {{item.qte}}</span></h5>
         <p class="card-text">La quantitée minimale de ce stock est : <span style="color: red;font-weight: bold; " > {{item.qteMin}}</span></p>
@@ -158,3 +158,23 @@
 
 
 
+<!-- <div aria-live="polite" aria-atomic="true" class="position-relative">
+ -->  <!-- Position it: -->
+  <!-- - `.toast-container` for spacing between toasts -->
+  <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
+  <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+<!--   <div class="toast-container position-absolute top-0 end-0 p-3">
+ -->
+    <!-- Then put toasts within -->
+    <!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        See? Just like this.
+      </div>
+    </div>
+    </div> -->

@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,10 +23,17 @@ import { CommonModule } from '@angular/common';
     FormsModule,
      ReactiveFormsModule,
      CommonModule,
-    
-    
+     BrowserAnimationsModule,
+     ToastrModule.forRoot({
+       timeOut:1500,
+       progressBar:true,
+       progressAnimation:'increasing',
+       preventDuplicates:true
+     })
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

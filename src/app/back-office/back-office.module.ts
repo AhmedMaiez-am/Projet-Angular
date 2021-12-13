@@ -10,10 +10,11 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { ProductComponent } from './product/product.component';
 import { StockComponent } from './stock/stock.component';
+import { StockProduitComponent } from './stock-produit/stock-produit.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, SideBarComponent, FooterComponent, BodyComponent, ProductComponent, StockComponent ],  imports: [
+  declarations: [HomeComponent, HeaderComponent, SideBarComponent, FooterComponent, BodyComponent, ProductComponent, StockComponent, StockProduitComponent ],  imports: [
     CommonModule,
     BackOfficeRoutingModule,
     FormsModule,
