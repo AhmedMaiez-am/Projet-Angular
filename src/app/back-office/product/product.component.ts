@@ -3,6 +3,7 @@ import { ProductService } from './product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Models/Product';
 import { FormControl, FormGroup,FormBuilder } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 
 
@@ -19,7 +20,7 @@ export class ProductComponent implements OnInit {
   showAdd:boolean=true;
   showUpdate:boolean=true;
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService,private services: NotificationsService) { }
 
   ngOnInit() {
     this.getAllProducts();
@@ -131,5 +132,6 @@ export class ProductComponent implements OnInit {
       this.my_products =res;
     });
   }
+  
 
 }

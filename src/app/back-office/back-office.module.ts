@@ -19,6 +19,7 @@ import { FournisseurComponent } from './fournisseur/fournisseur.component';
     FormsModule,
      ReactiveFormsModule,
      CommonModule,
+     
   ]
 })
 export class BackOfficeModule { }
